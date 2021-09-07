@@ -1,0 +1,38 @@
+.toasted-container {
+    .toasted {
+        align-items: flex-start;
+        line-height: inherit;
+        padding: 10px 20px;
+        font-weight: 500;
+
+        .fa,
+        .fab,
+        .far,
+        .fas,
+        .material-icons,
+        .mdi {
+            margin: 0;
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        p {
+            display: flex;
+            flex-direction: column;
+        }
+
+        b,
+        strong {
+            font-weight: bold;
+        }
+
+        .action {
+            color: #fff;
+
+            &.icon {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}
