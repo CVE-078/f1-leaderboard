@@ -8,7 +8,7 @@
         <div
           v-for="circuit in activeCircuits"
           :key="circuit.id"
-          class="circuits__item"
+          class="circuits__item fade-in"
           :style="{ backgroundImage: `url(${require('@/assets/images/backgrounds/' + circuit.slug + '.jpg')})` }"
         >
           <CircuitItem

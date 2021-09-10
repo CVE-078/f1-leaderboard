@@ -2,7 +2,7 @@
   <div class="circuit-detail">
     <div
       class="circuit-detail__header"
-      :style="{backgroundImage: `url(${require('@/assets/images/backgrounds/' + circuit.slug + '.jpg')})`}"
+      :style="{ backgroundImage: `url(${require('@/assets/images/backgrounds/' + circuit.slug + '.jpg')})` }"
     >
       <div class="circuit-detail__content">
         <h2 class="circuit-detail__title">

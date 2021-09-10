@@ -10,7 +10,7 @@
         <div
           v-for="result in circuitSortedResults"
           :key="result.id"
-          class="player-results__item"
+          class="player-results__item fade-in"
           :style="{ backgroundImage: `url(${require('@/assets/images/backgrounds/' + getCircuit(result.trackId).slug + '.jpg')})` }"
         >
           <CircuitItem

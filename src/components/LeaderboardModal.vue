@@ -156,23 +156,6 @@
                 </div>
               </div>
             </div>
-
-            <div
-              class="flex flex-col sm:flex-row items-center mb-3 sm:mb-5 sm:space-x-5"
-            >
-              <div class="w-full">
-                <p class="text-sm sm:text-base mb-1 sm:mb-2 font-semibold text-gray-700">Date</p>
-
-                <input
-                  type="date"
-                  name="date"
-                  id="date"
-                  v-model="date"
-                  class="text-sm sm:text-base w-full px-5 py-3 bg-white border border-gray-200 rounded-md shadow-sm appearance-none"
-                  required
-                />
-              </div>
-            </div>
           </form>
         </div>
 

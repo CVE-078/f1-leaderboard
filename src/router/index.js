@@ -4,8 +4,7 @@ import Circuits from "@/views/Circuits";
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     name: "Home",
     redirect: {
@@ -22,7 +21,8 @@ const routes = [
     name: "CircuitDetail",
     component: () =>
       import(
-        /* webpackChunkName: "CircuitDetail" */ "../views/CircuitDetail.vue"
+        /* webpackChunkName: "CircuitDetail" */
+        "../views/CircuitDetail.vue"
       ),
     params: true,
   },
@@ -30,14 +30,15 @@ const routes = [
     path: "/players",
     name: "Players",
     component: () =>
-      import(/* webpackChunkName: "Players" */ "../views/Players.vue"),
+      import( /* webpackChunkName: "Players" */ "../views/Players.vue"),
   },
   {
     path: "/player/:slug",
     name: "PlayerDetail",
     component: () =>
       import(
-        /* webpackChunkName: "PlayerDetail" */ "../views/PlayerDetail.vue"
+        /* webpackChunkName: "PlayerDetail" */
+        "../views/PlayerDetail.vue"
       ),
     params: true,
   },

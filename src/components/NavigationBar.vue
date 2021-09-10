@@ -200,7 +200,7 @@ export default {
           const startDate = new Date(c.start);
           const endDate = new Date(c.end);
 
-          // now.setDate(now.getDate() + 10);
+          now.setDate(now.getDate() - 1);
 
           const startDateDiff = Math.floor(
             (startDate - now) / (1000 * 60 * 60 * 24)
