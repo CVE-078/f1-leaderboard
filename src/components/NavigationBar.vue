@@ -195,7 +195,7 @@ export default {
       snapshot.forEach((c) => {
         c = c.val();
 
-        if (c.priority < 99) {
+        if (c.priority < 99 && c.inGame === true) {
           let now = new Date();
           const startDate = new Date(c.start);
           const endDate = new Date(c.end);
