@@ -1,28 +1,23 @@
 <template>
   <div class="circuits">
-    <div
-      v-if="activeCircuits.length > 0"
-      class="circuits__wrapper"
-    >
+    <div v-if="activeCircuits.length > 0" class="circuits__wrapper">
       <div class="circuits__list">
         <div
           v-for="circuit in activeCircuits"
           :key="circuit.id"
           class="circuits__item fade-in"
-          :style="{ backgroundImage: `url(${require('@/assets/images/backgrounds/' + circuit.slug + '.jpg')})` }"
+          :style="{
+            backgroundImage: `url(${require('@/assets/images/backgrounds/' +
+              circuit.slug +
+              '.jpg')})`,
+          }"
         >
-          <CircuitItem
-            class="circuits__link"
-            :circuit="circuit"
-          />
+          <CircuitItem class="circuits__link" :circuit="circuit" />
         </div>
       </div>
     </div>
 
-    <div
-      v-if="activeCircuits.length > 0"
-      class="circuits__wrapper"
-    >
+    <div v-if="activeCircuits.length > 0" class="circuits__wrapper">
       <h2 class="circuits__title">Inactive circuits</h2>
 
       <div class="circuits__list">
@@ -30,12 +25,13 @@
           v-for="circuit in inactiveCircuits"
           :key="circuit.id"
           class="circuits__item"
-          :style="{ backgroundImage: `url(${require('@/assets/images/backgrounds/' + circuit.slug + '.jpg')})` }"
+          :style="{
+            backgroundImage: `url(${require('@/assets/images/backgrounds/' +
+              circuit.slug +
+              '.jpg')})`,
+          }"
         >
-          <CircuitItem
-            class="circuits__link"
-            :circuit="circuit"
-          />
+          <CircuitItem class="circuits__link" :circuit="circuit" />
         </div>
       </div>
     </div>
@@ -48,7 +44,7 @@ import CircuitItem from "@/components/CircuitItem";
 
 export default {
   name: "Circuits",
-  
+
   components: {
     CircuitItem,
   },
@@ -62,7 +58,7 @@ export default {
   computed: {
     activeCircuits() {
       const filteredCircuits = [...this.circuits].filter(
-        (circuit) => circuit.priority < 99
+        (c) => c.priority < 99 && c.inGame === true
       );
 
       return filteredCircuits.sort(
@@ -73,7 +69,7 @@ export default {
 
     inactiveCircuits() {
       const filteredCircuits = [...this.circuits].filter(
-        (circuit) => circuit.priority == 99
+        (c) => c.priority == 99 || c.inGame === false
       );
 
       return filteredCircuits.sort(
@@ -94,7 +90,6 @@ export default {
   $circuits: ".circuits";
 
   #{$circuits} {
-
     &__wrapper {
       @apply flex flex-col items-center justify-center pt-10 sm:px-6;
     }
@@ -131,7 +126,6 @@ export default {
       z-index: 2;
       @apply py-16 md:py-24 px-8;
     }
-
   }
 }
 </style>

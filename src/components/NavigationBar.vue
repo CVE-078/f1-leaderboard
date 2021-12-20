@@ -5,34 +5,29 @@
         <div class="navigation__section navigation__section--left">
           <div class="block w-full">
             <div class="flex space-x-2 sm:space-x-4">
-
-              <router-link 
-                to="/circuits" 
-                class="navigation__item"
-              >
+              <router-link to="/circuits" class="navigation__item">
                 Circuits
               </router-link>
 
-              <router-link 
-                to="/players" 
-                class="navigation__item"
-              >
+              <router-link to="/players" class="navigation__item">
                 Players
               </router-link>
 
               <router-link
-                v-if="this.circuit"
-                :to="{ name: 'CircuitDetail', params: { slug: circuit.slug } }"
+                v-if="this.circuit.length > 0"
+                :to="{
+                  name: 'CircuitDetail',
+                  params: { slug: circuit.slug },
+                }"
                 class="navigation__item"
               >
-                <img
-                  class="navigation__flag"
+                <img 
+                  class="navigation__flag" 
                   :src="require(`@/assets/images/flags/` + circuit.code + `.png`)"
                 />
                 <span v-if="upcoming === true">Upcoming</span>
                 <span v-if="current === true">Current</span>
               </router-link>
-
             </div>
           </div>
         </div>
@@ -40,7 +35,6 @@
         <div class="navigation__section navigation__section--right">
           <div class="block">
             <div class="flex space-x-4">
-
               <button
                 @click="toggleDarkMode()"
                 class="navigation__toggleDarkMode"
@@ -57,7 +51,6 @@
               >
                 <i class="fas fa-plus"></i>
               </button>
-
             </div>
           </div>
         </div>
@@ -74,73 +67,6 @@
     <LeaderboardModal ref="modalName"></LeaderboardModal>
   </nav>
 </template>
-
-<style lang="scss" scoped>
-html.dark {
-  .router-link-active {
-    @apply bg-gray-600 text-gray-200;
-  }
-}
-
-.router-link-active {
-  @apply bg-gray-100;
-}
-
-.navigation {
-  @apply fixed w-full top-0 left-0 bg-white dark:bg-gray-800 shadow-md z-50 transition-all ease-in-out;
-  $navigation: ".navigation";
-
-  #{$navigation} {
-    &__container {
-      @apply max-w-7xl mx-auto py-4 px-6 lg:px-8;
-    }
-
-    &__inner {
-      @apply relative flex items-center justify-between;
-    }
-
-    &__section {
-      @apply flex items-stretch;
-
-      &#{$navigation}__section {
-        &--left {
-          @apply flex-1 justify-start mr-6;
-        }
-
-        &--right {
-          @apply sm:flex-1 justify-end;
-        }
-      }
-    }
-
-    &__item {
-      @apply flex flex-auto sm:flex-none justify-center items-center bg-transparent text-center hover:bg-gray-100 dark:hover:bg-gray-600 transition-all ease-in-out text-gray-800 dark:text-gray-200 dark:hover:text-gray-200 px-2 sm:px-5 py-2 rounded-md text-sm sm:text-base font-medium;
-    }
-
-    &__flag {
-      @apply w-8 max-h-5 mr-3 object-cover;
-    }
-
-    &__toggleDarkMode {
-      @apply bg-transparent transition-all ease-in-out sm:px-5 rounded-md text-xl font-medium outline-none;
-    }
-
-    &__openModal {
-      @apply bg-green-700 hover:bg-green-800 transition-all ease-in-out text-white px-5 focus:outline-none;
-
-      &#{$navigation}__openModal {
-        &--desktop {
-          @apply hidden sm:block py-2 rounded-md text-sm font-medium;
-        }
-
-        &--mobile {
-          @apply block sm:hidden py-3 text-lg fixed left-0 bottom-0 w-full;
-        }
-      }
-    }
-  }
-}
-</style>
 
 <script>
 import { db } from "@/db";
@@ -241,8 +167,77 @@ export default {
         }
       });
 
+      console.log(closestCircuit);
+
       this.circuit = closestCircuit;
     },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+html.dark {
+  .router-link-active {
+    @apply bg-gray-600 text-gray-200;
+  }
+}
+
+.router-link-active {
+  @apply bg-gray-100;
+}
+
+.navigation {
+  @apply fixed w-full top-0 left-0 bg-white dark:bg-gray-800 shadow-md z-50 transition-all ease-in-out;
+  $navigation: ".navigation";
+
+  #{$navigation} {
+    &__container {
+      @apply max-w-7xl mx-auto py-4 px-6 lg:px-8;
+    }
+
+    &__inner {
+      @apply relative flex items-center justify-between;
+    }
+
+    &__section {
+      @apply flex items-stretch;
+
+      &#{$navigation}__section {
+        &--left {
+          @apply flex-1 justify-start mr-6;
+        }
+
+        &--right {
+          @apply sm:flex-1 justify-end;
+        }
+      }
+    }
+
+    &__item {
+      @apply flex flex-auto sm:flex-none justify-center items-center bg-transparent text-center hover:bg-gray-100 dark:hover:bg-gray-600 transition-all ease-in-out text-gray-800 dark:text-gray-200 dark:hover:text-gray-200 px-2 sm:px-5 py-2 rounded-md text-sm sm:text-base font-medium;
+    }
+
+    &__flag {
+      @apply w-8 max-h-5 mr-3 object-cover;
+    }
+
+    &__toggleDarkMode {
+      @apply bg-transparent transition-all ease-in-out sm:px-5 rounded-md text-xl font-medium outline-none;
+    }
+
+    &__openModal {
+      @apply bg-green-700 hover:bg-green-800 transition-all ease-in-out text-white px-5 focus:outline-none;
+
+      &#{$navigation}__openModal {
+        &--desktop {
+          @apply hidden sm:block py-2 rounded-md text-sm font-medium;
+        }
+
+        &--mobile {
+          @apply block sm:hidden py-3 text-lg fixed left-0 bottom-0 w-full;
+        }
+      }
+    }
+  }
+}
+</style>
